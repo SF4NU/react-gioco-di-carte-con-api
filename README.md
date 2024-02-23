@@ -1,8 +1,5 @@
-# React + Vite
+# Gioco di Carte: Regole In Fase Di Sviluppo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sto ancora mettendo a punto le regole di questo gioco di carte! La mia idea è di usare l'API disponibile su [deckofcardsapi.com](https://deckofcardsapi.com/) per gestire le carte. Con questa API, posso estrarre e gestire le carte da un mazzo con un ID unico. Questo significa che ogni volta che prendo una carta e la rimetto nel mazzo, sto sempre giocando con lo stesso mazzo.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Prima di decidere le regole definitive del gioco, devo creare un modello per le carte. Voglio considerare sia il numero sulla carta che il seme.
