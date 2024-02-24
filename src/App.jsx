@@ -1,9 +1,13 @@
-import Cards from "./Cards"
+import Cards from "./Cards";
+import Header from "./Header";
 
 function App() {
-  return(
-    <Cards></Cards>
+  return (
+    <>
+      <Header></Header>
+      <Cards></Cards>
+    </>
   );
 }
 
-export default App
+export default App;

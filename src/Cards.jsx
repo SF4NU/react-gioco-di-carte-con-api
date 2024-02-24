@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 function Cards() {
   const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
@@ -32,26 +32,43 @@ function Cards() {
     if (renderOnce.current) {
       const fetchData = async () => {
         try {
-          const deck = await axios.get(URL)
-          .then(res => {
-            setDeck_id(d => d = res.data.deck_id)
+          const deck = await axios.get(URL).then((res) => {
+            setDeck_id((d) => (d = res.data.deck_id));
           });
-          const card = await axios.get(`https://deckofcardsapi.com/api/deck/new/draw/?count=1`)
-          .then(res => {
-            console.log(res.cards);
-            setCards(c => c = res.data.cards[0].image)
-          }
-          )
-        }
-        catch (error) {
+        } catch (error) {
           console.error(error);
         }
-      }
+      };
       fetchData();
       renderOnce.current = false;
       console.log(deck_id);
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    if (deck_id) {
+      if (!renderOnce.current) {
+        const fetchData = async () => {
+          try {
+            const card = await axios
+              .get(
+                `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
+              )
+              .then((res) => {
+                setCards((c) => (c = res.data.cards[0].image));
+                console.log(res.data.cards[0].image)
+              });
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+        renderOnce.current = false;
+        console.log(deck_id);
+      }
+    }
+  }, [deck_id]);
+
 
   return (
     <>

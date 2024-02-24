@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+a {
+  text-decoration: none;
+  color: #FFE76F;
+}
+.header-div {
+  position: sticky;
+  background-color: #5711EF;
+  color: #FFFCEB;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 517px) {
+  .header-div {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 517.5px ) {
+  .header-div {
+    padding: 15px 100px;
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1000px ) {
+  .header-div {
+    padding: 15px 150px;
+    font-size: 1.8rem;
+  }
+} 
