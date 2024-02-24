@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import "./styles/cards.css";
 
 function Cards() {
   const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
@@ -7,7 +8,9 @@ function Cards() {
   const renderOnce = useRef(true);
   const [deck_id, setDeck_id] = useState("");
   const [Cards, setCards] = useState("");
-
+  const [values, setValues] = useState();
+  const [suit, setSuit] = useState();
+  const [newCard, setNewCard] = useState(false);
   // useEffect(() => {
   //   if (renderOnce.current) {
   //     const fetchData = async () => {
@@ -54,27 +57,45 @@ function Cards() {
               .get(
                 `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
               )
+              // .then((res) => {
+              //   setCards((c) => (c = res.data.cards[0].image));
+              //   console.log(res.data.cards[0].image)
+              // });
               .then((res) => {
-                setCards((c) => (c = res.data.cards[0].image));
-                console.log(res.data.cards[0].image)
-              });
+                let value = res.data.cards[0].value;
+                const namedCards = ["QUEEN", "KING", "JACK", "ACE"];
+                if (namedCards.includes(value)) {
+                  const newValue = value.charAt(0);
+                  console.log(newValue);
+                  setValues(v => v = newValue);
+                }
+                else {
+                  setValues(v => v = value);
+                }
+                setSuit(s => s = res.data.cards[0].suit)
+              })
           } catch (error) {
             console.error(error);
           }
         };
         fetchData();
         renderOnce.current = false;
-        console.log(deck_id);
       }
     }
-  }, [deck_id]);
+  }, [deck_id, newCard]);
 
+  function callApi() {
+    setNewCard(nc => !nc)
+  }
 
   return (
     <>
       <div>
         <h1>{deck_id}</h1>
-        <img src={Cards} alt="card" />
+        {/* <img src={Cards} alt="card" /> */}
+        <p>{values}</p>
+        <p>{suit}</p>
+        <button onClick={callApi}>Change Card</button>
       </div>
     </>
   );
