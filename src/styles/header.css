@@ -3,6 +3,7 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
+  text-align: center;
 }
 a {
   text-decoration: none;

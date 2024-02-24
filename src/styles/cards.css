@@ -2,17 +2,79 @@
   font-family: WesternGrit;
   src: url(../assets/WesternGrit-Regular.ttf);
 }
-.cards {
-  display: flex;
-  margin-left: 20px;
-  align-items: center;
-  justify-content: center;
+.main-div {
+  margin-top: 100px;
 }
-.card {
+.invisible-card {
   height: 300px;
   width: 200px;
-  background-color: rgb(192, 192, 192);
-  background: linear-gradient(to bottom left, rgba(192, 192, 192, 0.8), transparent);
+  position: absolute;
+}
+.cards {
+  /* display: grid;
+  margin-left: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  place-items: center;
+  grid-gap: 20px 160px; */
+  display: flex;
+  position: relative;
+  place-content: center;
+}
+@media (max-width: 500px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .5;
+  }
+}
+@media (min-width: 500.5px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .6;
+  }
+}
+@media (min-width: 700.5px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .7;
+  }
+}
+@media (min-width: 850px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .8;
+  }
+}
+@media (min-width: 1000px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .9;
+  }
+}
+@media (min-width: 1000.5px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: 1;
+  }
+}
+.card0,
+.card1,
+.card2,
+.card3 {
+  height: 300px;
+  width: 200px;
+  background-color: rgb(218, 218, 218);
   filter: brightness(80%);
   border-radius: 15px;
   position: relative;
@@ -22,9 +84,107 @@
   justify-content: center;
   font-family: WesternGrit;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  position: absolute;
 }
-.card:hover {
-  transform: rotate(-2deg) translate(-2px, -5px);
+.cards:hover .card0 {
+  animation: cards-animation1 0.3s ease-in-out forwards;
+  animation-play-state: running;
+}
+.cards:hover .card1 {
+  animation: cards-animation2 0.3s ease-in-out forwards;
+  animation-play-state: running;
+}
+.cards:hover .card2 {
+  animation: cards-animation3 0.3s ease-in-out forwards;
+  animation-play-state: running;
+}
+.cards:hover .card3 {
+  animation: cards-animation4 0.3s ease-in-out forwards;
+  animation-play-state: running;
+}
+.card0 {
+  animation: moveBack1 0.3s ease-in-out ;
+  transform: rotate(5deg);
+}
+.card1 {
+  animation: moveBack2 0.3s ease-in-out ;
+  transform: rotate(2deg);
+}
+.card2 {
+  animation: moveBack3 0.3s ease-in-out ;
+  transform: rotate(-5deg);
+}
+.card3 {
+  animation: moveBack4 0.3s ease-in-out ;
+  transform: rotate(-3deg);
+}
+@keyframes moveBack1 {
+  0% {
+    transform: translate(250px, -5px) rotate(20deg);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes moveBack2 {
+  0% {
+    transform: translate(-250px, -5px) rotate(-20deg);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes moveBack3 {
+  0% {
+    transform: translate(80px, -45px) rotate(8deg);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes moveBack4 {
+  0% {
+    transform: translate(-80px, -45px) rotate(-8deg);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes cards-animation1 {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(250px, -5px) rotate(20deg);
+  }
+}
+@keyframes cards-animation2 {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-250px, -5px) rotate(-20deg);
+  }
+}
+@keyframes cards-animation3 {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(80px, -50px) rotate(8deg);
+  }
+}
+@keyframes cards-animation4 {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-80px, -50px) rotate(-8deg);
+  }
+}
+@keyframes on-render {
+  
 }
 .card-value-suit {
   display: flex;

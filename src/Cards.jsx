@@ -13,7 +13,8 @@ import diamondsIcon from "./assets/diamondsIcon.svg";
 function Cards() {
   const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
 
-  const renderOnce = useRef(true);
+  const renderOnce1 = useRef(true);
+  const renderOnce2 = useRef(true);
   const [deck_id, setDeck_id] = useState("");
   const [Cards, setCards] = useState("");
   const [values, setValues] = useState();
@@ -22,6 +23,7 @@ function Cards() {
   // const [seed, setSeed] = useState([spades, hearts, clovers, diamonds])
   const seedsImage = [spades, hearts, clovers, diamonds];
   const seedsIcon = [spadesIcon, heartsIcon, cloversIcon, diamondsIcon];
+  const [cardsList, setCardsList] = useState([]);
   // useEffect(() => {
   //   if (renderOnce.current) {
   //     const fetchData = async () => {
@@ -43,7 +45,7 @@ function Cards() {
   // }, []);
 
   useEffect(() => {
-    if (renderOnce.current) {
+    if (renderOnce1.current) {
       const fetchData = async () => {
         try {
           const deck = await axios.get(URL).then((res) => {
@@ -54,87 +56,119 @@ function Cards() {
         }
       };
       fetchData();
-      renderOnce.current = false;
+      renderOnce1.current = false;
       console.log(deck_id);
     }
   }, []);
 
   useEffect(() => {
     if (deck_id) {
-      if (!renderOnce.current) {
+      if (renderOnce2.current) {
         const fetchData = async () => {
           try {
             const card = await axios
               .get(
-                `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
+                `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=4`
               )
               // .then((res) => {
               //   setCards((c) => (c = res.data.cards[0].image));
               //   console.log(res.data.cards[0].image)
               // });
               .then((res) => {
-                let value = res.data.cards[0].value;
-                const namedCards = ["QUEEN", "KING", "JACK", "ACE"];
-                if (namedCards.includes(value)) {
-                  const newValue = value.charAt(0);
-                  console.log(newValue);
-                  setValues((v) => (v = newValue));
-                } else {
-                  setValues((v) => (v = value));
-                }
-                let suit = res.data.cards[0].suit;
-                if (suit === "SPADES") {
-                  setSuit((s) => (s = 0));
-                } else if (suit === "HEARTS") {
-                  setSuit((s) => (s = 1));
-                } else if (suit === "CLUBS") {
-                  setSuit((s) => (s = 2));
-                } else {
-                  setSuit((s) => (s = 3));
-                }
+                res.data.cards.map((card) => {
+                  setCardsList((c) => [...c, card]);
+                });
               });
           } catch (error) {
             console.error(error);
+          } finally {
           }
         };
         fetchData();
-        renderOnce.current = false;
+        renderOnce2.current = false;
       }
     }
   }, [deck_id, newCard]);
+
+  useEffect(() => {
+    console.log("rendered");
+  });
 
   function callApi() {
     setNewCard((nc) => !nc);
   }
 
-  return (
-    <>
-      <div>
-        <h1>{deck_id}</h1>
-        {/* <img src={Cards} alt="card" /> */}
-        {/* <p>{values}</p>
-        <p>{suit}</p> */}
-        <div className="cards">
-          <div className="card">
-            <div className="card-value-suit">
-              <div className="number">{values}</div>
-              <div>
-                <img className="card-icon" src={seedsIcon[suit]} alt="spades icon" />
-              </div>
-            </div>
-            <div>
-              <img className="card-image" src={seedsImage[suit]} alt="spades card image" />
-            </div>
-            <div className="card-value-suit-inverted">
-              <div className="number">{values}</div>
-              <div>
-                <img className="card-icon" src={seedsIcon[suit]} alt="spades icon" />
-              </div>
-            </div>
-          </div>
+  const displayCards = cardsList.map((card, index) => (
+    <div key={index} className={`card${index}`}>
+      <div className="card-value-suit">
+        <div className="number">{handleCardsIcons(card.value)}</div>
+        <div>
+          <img
+            className="card-icon"
+            src={seedsIcon[handleCardsImages(card.suit)]}
+            alt="spades icon"
+          />
         </div>
       </div>
-      <button onClick={callApi}>Change Card</button>
+      <div>
+        <img
+          className="card-image"
+          src={seedsImage[handleCardsImages(card.suit)]}
+          alt="spades card image"
+        />
+      </div>
+      <div className="card-value-suit-inverted">
+        <div className="number">{handleCardsIcons(card.value)}</div>
+        <div>
+          <img
+            className="card-icon"
+            src={seedsIcon[handleCardsImages(card.suit)]}
+            alt="spades icon"
+          />
+        </div>
+      </div>
+    </div>
+  ));
+
+  // function check() {
+  //   console.log(cardsList);
+  //   cardsList.map((card, index) => {
+  //     console.log(card.value);
+  //   });
+  // }
+
+  function handleCardsIcons(card) {
+    const namedCards = ["QUEEN", "KING", "JACK", "ACE"];
+    if (namedCards.includes(card)) {
+      const newValue = card.charAt(0);
+      return newValue;
+    } else {
+      return card;
+    }
+  }
+  function handleCardsImages(card) {
+    if (card === "SPADES") {
+      return 0;
+    } else if (suit === "HEARTS") {
+      return 1;
+    } else if (suit === "CLUBS") {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+
+  return (
+    <>
+      {/* <h1>{deck_id}</h1> */}
+      <div className="main-div">
+        <div className="cards">
+          <div className="invisible-card"></div>
+          {displayCards}
+        </div>
+      </div>
+      {/* <button onClick={callApi}>Change Card</button>
+      <button onClick={check}>Check</button> */}
     </>
   );
 }
