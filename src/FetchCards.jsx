@@ -29,8 +29,8 @@ function FetchCards() {
   return (
     <>
       <DeckId.Provider value={deckId}>
-        <PlayGame value1={value1} setValue1={setValue1}></PlayGame>
-        <Cards value1={value1} value2={value2}></Cards>
+        <PlayGame></PlayGame>
+        <Cards></Cards>
       </DeckId.Provider>
     </>
   );

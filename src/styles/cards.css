@@ -8,6 +8,7 @@
   left: 0;
   right: 0;
   height: 230px;
+  z-index: 25;
 }
 .invisible-card {
   height: 300px;
