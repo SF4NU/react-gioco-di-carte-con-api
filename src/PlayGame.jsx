@@ -14,7 +14,6 @@ import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
 import _, { add, random } from "lodash";
-import { swapPlayingCards } from "./utils/swapPlayingCards";
 
 function PlayGame() {
   const renderOnce = useRef(true);
@@ -28,7 +27,6 @@ function PlayGame() {
   const seedsImage = [spades, hearts, clovers, diamonds];
   const [randomCard, setRandomCard] = useState(4);
   const [cardsData, setCardsData] = useState([]);
-  const [countdown, setCountdown] = useState(0);
 
   const fetchCards = async () => {
     try {
@@ -36,11 +34,9 @@ function PlayGame() {
         `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=${randomCard}`
       );
       const getCardsData = response.data.cards;
-      console.log("First entry:", getCardsData);
       if (addOnceValue) {
         setCardsData(getCardsData);
       } else {
-        console.log("second entry", getCardsData);
         let newValuesNumber = getCardsData.length;
         const newData = [...cardsData];
         while (newValuesNumber > 0) {
@@ -48,10 +44,6 @@ function PlayGame() {
           newValuesNumber--;
         }
         setCardsData(newData);
-        console.log("THE NEW DATA:", cardsData);
-        // const newCard = getCardsData[randomCard];
-        // const setCards = swapPlayingCards(randomCard, newCard, cardsData);
-        // setCardsData(setCards);
       }
       addOnce.current = false;
       return getCardsData;
@@ -59,9 +51,6 @@ function PlayGame() {
       console.error("Error fetching cards:", error);
     }
   };
-  useEffect(() => {
-    console.log("Updated cardsData:", cardsData);
-  }, [cardsData]);
   useEffect(() => {
     if (deck_id) {
       if (renderOnceValue) {
@@ -82,6 +71,13 @@ function PlayGame() {
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
+  function updateScore() {
+
+  }
+
+  function chooseCard() {
+    
+  }
 
   return (
     <>
@@ -117,7 +113,7 @@ function PlayGame() {
             </div>
           </div>
         ))}
-        {/* <span className="countdown-number">{countdown}</span> */}
+        <span className="countdown-number">0</span>
       </section>
     </>
   );

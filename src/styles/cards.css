@@ -206,7 +206,7 @@
     transform: translate(250px, -5px) rotate(20deg);
   }
   100% {
-    transform: translate(0);
+    transform: rotate(5deg);
   }
 }
 @keyframes moveBack2 {
@@ -214,7 +214,7 @@
     transform: translate(-250px, -5px) rotate(-20deg);
   }
   100% {
-    transform: translate(0);
+    transform: rotate(2deg);
   }
 }
 @keyframes moveBack3 {
@@ -222,7 +222,7 @@
     transform: translate(80px, -45px) rotate(8deg);
   }
   100% {
-    transform: translate(0);
+    transform: rotate(-5deg);
   }
 }
 @keyframes moveBack4 {
@@ -230,12 +230,12 @@
     transform: translate(-80px, -45px) rotate(-8deg);
   }
   100% {
-    transform: translate(0);
+    transform: rotate(-3deg);
   }
 }
 @keyframes cards-animation1 {
   0% {
-    transform: translate(0);
+    transform: rotate(5deg);
   }
   100% {
     transform: translate(250px, -5px) rotate(20deg);
@@ -243,7 +243,7 @@
 }
 @keyframes cards-animation2 {
   0% {
-    transform: translate(0);
+    transform: rotate(2deg);
   }
   100% {
     transform: translate(-250px, -5px) rotate(-20deg);
@@ -251,7 +251,7 @@
 }
 @keyframes cards-animation3 {
   0% {
-    transform: translate(0);
+    transform: rotate(-5deg);
   }
   100% {
     transform: translate(80px, -50px) rotate(8deg);
@@ -259,7 +259,7 @@
 }
 @keyframes cards-animation4 {
   0% {
-    transform: translate(0);
+    transform: rotate(-3deg);
   }
   100% {
     transform: translate(-80px, -50px) rotate(-8deg);
