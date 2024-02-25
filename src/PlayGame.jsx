@@ -117,7 +117,7 @@ function PlayGame() {
             </div>
           </div>
         ))}
-        <span className="countdown-number">{countdown}</span>
+        {/* <span className="countdown-number">{countdown}</span> */}
       </section>
     </>
   );

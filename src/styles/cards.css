@@ -4,9 +4,9 @@
 }
 .main-div {
   position: absolute;
+  bottom: 100px;
   left: 0;
   right: 0;
-  bottom: 100px;
   height: 230px;
 }
 .invisible-card {
@@ -23,6 +23,11 @@
   display: flex;
   position: relative;
   place-content: center;
+}
+@media (min-width: 1028px) and (max-width: 1920px){
+  .main-div {
+    height: 330px;
+  }
 }
 @media (orientation: landscape) and (max-width: 1000px) {
   .main-div {
@@ -52,9 +57,6 @@
   .card3 {
     scale: 0.7;
   }
-  .main-div {
-    bottom: -45px;
-  }
 }
 @media (min-width: 850px) {
   .card0,
@@ -83,7 +85,7 @@
     bottom: 10px;
   }
 }
-@media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
+/* @media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
   .card0,
   .card1,
   .card2,
@@ -91,7 +93,7 @@
     margin-top: 50px;
     scale: .4;
   }
-}
+} */
 @media (min-height: 0px) and (max-height: 820px) {
   .main-div {
     bottom: 30px;

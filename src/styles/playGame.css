@@ -67,7 +67,7 @@ section {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 }
-@media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
+/* @media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) and () {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
@@ -79,7 +79,20 @@ section {
     margin-top: 0;
     grid-template-columns: repeat(4, minmax(200px, 1fr));
   }
-}
+} */
+/* @media (orientation: landscape) and (min-width: 1000.5px) and (max-width: 1920) {
+  .playing-card-0,
+  .playing-card-1,
+  .playing-card-2,
+  .playing-card-3 {
+    scale: 0.35;
+    margin-bottom: 50px;
+  }
+  section {
+    margin-top: 0;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+  }
+} */
 section span {
   position: absolute;
   font-family: WesternGrit;
