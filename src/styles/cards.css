@@ -3,7 +3,11 @@
   src: url(../assets/WesternGrit-Regular.ttf);
 }
 .main-div {
-  margin-top: 100px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320px;
 }
 .invisible-card {
   height: 300px;
@@ -20,12 +24,17 @@
   position: relative;
   place-content: center;
 }
+@media (orientation: landscape) and (max-width: 1000px) {
+  .main-div {
+    margin-top: 50px;
+  }
+}
 @media (max-width: 500px) {
   .card0,
   .card1,
   .card2,
   .card3 {
-    scale: .5;
+    scale: 0.5;
   }
 }
 @media (min-width: 500.5px) {
@@ -33,7 +42,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .6;
+    scale: 0.6;
   }
 }
 @media (min-width: 700.5px) {
@@ -41,7 +50,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .7;
+    scale: 0.7;
   }
 }
 @media (min-width: 850px) {
@@ -49,7 +58,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .8;
+    scale: 0.8;
   }
 }
 @media (min-width: 1000px) {
@@ -57,7 +66,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .9;
+    scale: 0.9;
   }
 }
 @media (min-width: 1000.5px) {
@@ -86,38 +95,88 @@
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
   user-select: none;
   position: absolute;
+  cursor: pointer;
 }
-.cards:hover .card0 {
-  animation: cards-animation1 0.3s ease-in-out forwards;
-  animation-play-state: running;
-}
-.cards:hover .card1 {
-  animation: cards-animation2 0.3s ease-in-out forwards;
-  animation-play-state: running;
-}
-.cards:hover .card2 {
-  animation: cards-animation3 0.3s ease-in-out forwards;
-  animation-play-state: running;
-}
-.cards:hover .card3 {
-  animation: cards-animation4 0.3s ease-in-out forwards;
-  animation-play-state: running;
-}
-.card0 {
-  animation: moveBack1 0.3s ease-in-out ;
+.get-card-0 {
   transform: rotate(5deg);
 }
-.card1 {
-  animation: moveBack2 0.3s ease-in-out ;
+.get-card-1 {
   transform: rotate(2deg);
 }
-.card2 {
-  animation: moveBack3 0.3s ease-in-out ;
+.get-card-2 {
+  transform: rotate(-3deg);
+}
+.get-card-3 {
+  transform: rotate(5deg);
+}
+.see-cards0 {
+  animation: cards-animation1 0.3s ease-in-out forwards;
+}
+.see-cards1 {
+  animation: cards-animation2 0.3s ease-in-out forwards;
+}
+.see-cards2 {
+  animation: cards-animation3 0.3s ease-in-out forwards;
+}
+.see-cards3 {
+  animation: cards-animation4 0.3s ease-in-out forwards;
+}
+.card0-animation {
+  animation: moveBack1 0.3s ease-in-out;
+}
+.card1-animation {
+  animation: moveBack2 0.3s ease-in-out;
+  transform: rotate(2deg);
+}
+.card2-animation {
+  animation: moveBack3 0.3s ease-in-out;
   transform: rotate(-5deg);
 }
-.card3 {
-  animation: moveBack4 0.3s ease-in-out ;
+.card3-animation {
+  animation: moveBack4 0.3s ease-in-out;
   transform: rotate(-3deg);
+}
+.card0JS {
+  animation: moveBack1 0.3s ease-in-out;
+  animation: on-render 1s ease-in-out forwards;
+  animation-delay: 0ms;
+  transform: rotate(5deg);
+  opacity: 0;
+}
+.card1JS {
+  /* animation: moveBack2 0.3s ease-in-out; */
+  animation: on-render 1s ease-in-out forwards;
+  animation-delay: 200ms;
+
+  opacity: 0;
+  transform: rotate(2deg);
+}
+.card2JS {
+  /* animation: moveBack3 0.3s ease-in-out; */
+  animation: on-render 1s ease-in-out forwards;
+  animation-delay: 400ms;
+
+  opacity: 0;
+  transform: rotate(-5deg);
+}
+.card3JS {
+  /* animation: moveBack4 0.3s ease-in-out; */
+  animation: on-render 1s ease-in-out forwards;
+  animation-delay: 600ms;
+
+  opacity: 0;
+  transform: rotate(-3deg);
+}
+.skip-card-animation {
+  animation-delay: -1s;
+}
+@keyframes on-render {
+  0% {
+    transform: translate(0px, -1500px);
+  }
+  100% {
+  opacity: 1;
+  }
 }
 @keyframes moveBack1 {
   0% {
@@ -182,9 +241,6 @@
   100% {
     transform: translate(-80px, -50px) rotate(-8deg);
   }
-}
-@keyframes on-render {
-  
 }
 .card-value-suit {
   display: flex;

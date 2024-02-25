@@ -15,6 +15,7 @@ function Cards() {
 
   const renderOnce1 = useRef(true);
   const renderOnce2 = useRef(true);
+  const renderOnce3 = useRef(true);
   const [deck_id, setDeck_id] = useState("");
   const [Cards, setCards] = useState("");
   const [values, setValues] = useState();
@@ -24,6 +25,8 @@ function Cards() {
   const seedsImage = [spades, hearts, clovers, diamonds];
   const seedsIcon = [spadesIcon, heartsIcon, cloversIcon, diamondsIcon];
   const [cardsList, setCardsList] = useState([]);
+  const [checkIfClicked, setCheckIfClicked] = useState(true);
+
   // useEffect(() => {
   //   if (renderOnce.current) {
   //     const fetchData = async () => {
@@ -90,16 +93,82 @@ function Cards() {
     }
   }, [deck_id, newCard]);
 
+  const time = (ms) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(console.log("timeout"));
+      }, ms);
+    });
+  };
+
   useEffect(() => {
-    console.log("rendered");
-  });
+    if (renderOnce3.current) {
+      async function changeCardClasses() {
+        try {
+          await time(2200);
+          let i = 0;
+          while (i <= 3) {
+            const changedClass = document.querySelector(`.card${i}`);
+            changedClass.classList.remove(`card${i}JS`);
+            changedClass.classList.add("skip-card-animation");
+            i++;
+          }
+          await time(600);
+          removeFirstAnimation();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      // setTimeout(() => {
+
+      //   setTimeout(() => {
+      //     changedClass.classList.remove("skip-card-animation");
+      //   }, 1000);
+      // }, 2000);
+      changeCardClasses();
+    }
+    renderOnce3.current = false;
+  }, []);
+
+  function removeFirstAnimation() {
+    let i = 0;
+    while (i <= 3) {
+      const changedClass = document.querySelector(`.card${i}`);
+      changedClass.classList.remove("skip-card-animation");
+      i++;
+    }
+  }
+
+  function seeCards() {
+    console.log("clicked");
+    if (checkIfClicked) {
+      cardsList.map((card, index) => {
+        document.querySelector(`.get-card-${index}`).classList.remove(`card${index}-animation`);
+        document.querySelector(`.get-card-${index}`).classList.add(`see-cards${index}`);
+      });
+      setCheckIfClicked(c => c = false)
+    }
+    else {
+      cardsList.map((card, index) => {
+        document.querySelector(`.get-card-${index}`).classList.remove(`see-cards${index}`);
+        document.querySelector(`.get-card-${index}`).classList.add(`card${index}-animation`);
+      });
+      setCheckIfClicked(c => c = true)
+    }
+  }
 
   function callApi() {
     setNewCard((nc) => !nc);
   }
 
   const displayCards = cardsList.map((card, index) => (
-    <div key={index} className={`card${index}`}>
+    <div
+      key={index}
+      className={` get-card-${index} card${index}JS card${index}`}
+      onClick={() => {
+        seeCards();
+      }}>
       <div className="card-value-suit">
         <div className="number">{handleCardsIcons(card.value)}</div>
         <div>
