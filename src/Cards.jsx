@@ -15,7 +15,6 @@ import { handleCardsIcons } from "./utils/handleCardsIcons";
 import { time } from "./utils/timeout";
 
 function Cards() {
-  
   const deck_id = useContext(DeckId);
   const renderOnce2 = useRef(true);
   const renderOnce3 = useRef(true);
@@ -24,8 +23,6 @@ function Cards() {
   const [cardsList, setCardsList] = useState([]);
   const [checkIfClicked, setCheckIfClicked] = useState(true);
   const [checkIfReadyToAnimate, setCheckIfReadyToAnimate] = useState(false);
-
-  
 
   useEffect(() => {
     if (deck_id) {
@@ -45,7 +42,7 @@ function Cards() {
           } catch (error) {
             console.error(error);
           }
-        }
+        };
         fetchData();
         renderOnce2.current = false;
       }
@@ -148,9 +145,6 @@ function Cards() {
       </div>
     </div>
   ));
-
-  
-  
 
   return (
     <>

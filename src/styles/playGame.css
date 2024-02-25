@@ -1,9 +1,14 @@
+@font-face {
+  font-family: WesternGrit;
+  src: url(../assets/WesternGrit-Regular.ttf);
+}
 section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: repeat(2, minmax(200px, 250px));
   place-items: center;
   margin-top: 100px;
+  position: relative;
 }
 
 .playing-card-0,
@@ -74,4 +79,10 @@ section {
     margin-top: 0;
     grid-template-columns: repeat(4, minmax(200px, 1fr));
   }
+}
+section span {
+  position: absolute;
+  font-family: WesternGrit;
+  font-size: 5rem;
+  user-select: none;
 }
