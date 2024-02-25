@@ -84,6 +84,20 @@
     bottom: 10px;
   }
 }
+@media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    margin-top: 50px;
+    scale: .4;
+  }
+}
+@media (min-height: 0px) and (max-height: 820px) {
+  .main-div {
+    bottom: -70px;
+  }
+}
 .card0,
 .card1,
 .card2,
