@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
+import { DeckId } from "./FetchCards";
 import "./styles/cards.css";
 import spades from "./assets/spades.svg";
 import hearts from "./assets/hearts.svg";
@@ -10,59 +11,20 @@ import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
 
-function Cards() {
-  const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
-
-  const renderOnce1 = useRef(true);
+function Cards(deckId) {
+  
+  const deck_id = useContext(DeckId);
   const renderOnce2 = useRef(true);
   const renderOnce3 = useRef(true);
-  const [deck_id, setDeck_id] = useState("");
-  const [Cards, setCards] = useState("");
-  const [values, setValues] = useState();
   const [suit, setSuit] = useState();
   const [newCard, setNewCard] = useState(false);
-  // const [seed, setSeed] = useState([spades, hearts, clovers, diamonds])
   const seedsImage = [spades, hearts, clovers, diamonds];
   const seedsIcon = [spadesIcon, heartsIcon, cloversIcon, diamondsIcon];
   const [cardsList, setCardsList] = useState([]);
   const [checkIfClicked, setCheckIfClicked] = useState(true);
+  const [checkIfReadyToAnimate, setCheckIfReadyToAnimate] = useState(false);
 
-  // useEffect(() => {
-  //   if (renderOnce.current) {
-  //     const fetchData = async () => {
-  //       const deck = await fetch(URL);
-  //       deck.json().then((json) => {
-  //         console.log(json);
-  //         setDeck_id((d) => (d = json.deck_id));
-  //       });
-  //       const oneCard = await fetch(
-  //         `https://deckofcardsapi.com/api/deck/new/draw/?count=1`
-  //       );
-  //       oneCard.json().then((json) => {
-  //         setCards((c) => (c = json.cards[0].images.svg));
-  //       });
-  //     };
-  //     fetchData();
-  //     renderOnce.current = false;
-  //   }
-  // }, []);
-
-  useEffect(() => {
-    if (renderOnce1.current) {
-      const fetchData = async () => {
-        try {
-          const deck = await axios.get(URL).then((res) => {
-            setDeck_id((d) => (d = res.data.deck_id));
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchData();
-      renderOnce1.current = false;
-      console.log(deck_id);
-    }
-  }, []);
+  
 
   useEffect(() => {
     if (deck_id) {
@@ -73,10 +35,7 @@ function Cards() {
               .get(
                 `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=4`
               )
-              // .then((res) => {
-              //   setCards((c) => (c = res.data.cards[0].image));
-              //   console.log(res.data.cards[0].image)
-              // });
+
               .then((res) => {
                 res.data.cards.map((card) => {
                   setCardsList((c) => [...c, card]);
@@ -105,7 +64,8 @@ function Cards() {
     if (renderOnce3.current) {
       async function changeCardClasses() {
         try {
-          await time(2200);
+          await time(2500);
+          setCheckIfReadyToAnimate((c) => (c = true));
           let i = 0;
           while (i <= 3) {
             const changedClass = document.querySelector(`.card${i}`);
@@ -120,12 +80,6 @@ function Cards() {
         }
       }
 
-      // setTimeout(() => {
-
-      //   setTimeout(() => {
-      //     changedClass.classList.remove("skip-card-animation");
-      //   }, 1000);
-      // }, 2000);
       changeCardClasses();
     }
     renderOnce3.current = false;
@@ -141,20 +95,28 @@ function Cards() {
   }
 
   function seeCards() {
-    console.log("clicked");
-    if (checkIfClicked) {
-      cardsList.map((card, index) => {
-        document.querySelector(`.get-card-${index}`).classList.remove(`card${index}-animation`);
-        document.querySelector(`.get-card-${index}`).classList.add(`see-cards${index}`);
-      });
-      setCheckIfClicked(c => c = false)
-    }
-    else {
-      cardsList.map((card, index) => {
-        document.querySelector(`.get-card-${index}`).classList.remove(`see-cards${index}`);
-        document.querySelector(`.get-card-${index}`).classList.add(`card${index}-animation`);
-      });
-      setCheckIfClicked(c => c = true)
+    if (checkIfReadyToAnimate) {
+      if (checkIfClicked) {
+        cardsList.map((card, index) => {
+          document
+            .querySelector(`.get-card-${index}`)
+            .classList.remove(`card${index}-animation`);
+          document
+            .querySelector(`.get-card-${index}`)
+            .classList.add(`see-cards${index}`);
+        });
+        setCheckIfClicked((c) => (c = false));
+      } else {
+        cardsList.map((card, index) => {
+          document
+            .querySelector(`.get-card-${index}`)
+            .classList.remove(`see-cards${index}`);
+          document
+            .querySelector(`.get-card-${index}`)
+            .classList.add(`card${index}-animation`);
+        });
+        setCheckIfClicked((c) => (c = true));
+      }
     }
   }
 
@@ -199,13 +161,6 @@ function Cards() {
     </div>
   ));
 
-  // function check() {
-  //   console.log(cardsList);
-  //   cardsList.map((card, index) => {
-  //     console.log(card.value);
-  //   });
-  // }
-
   function handleCardsIcons(card) {
     const namedCards = ["QUEEN", "KING", "JACK", "ACE"];
     if (namedCards.includes(card)) {
@@ -218,9 +173,9 @@ function Cards() {
   function handleCardsImages(card) {
     if (card === "SPADES") {
       return 0;
-    } else if (suit === "HEARTS") {
+    } else if (card === "HEARTS") {
       return 1;
-    } else if (suit === "CLUBS") {
+    } else if (card === "CLUBS") {
       return 2;
     } else {
       return 3;
@@ -229,15 +184,12 @@ function Cards() {
 
   return (
     <>
-      {/* <h1>{deck_id}</h1> */}
       <div className="main-div">
         <div className="cards">
           <div className="invisible-card"></div>
           {displayCards}
         </div>
       </div>
-      {/* <button onClick={callApi}>Change Card</button>
-      <button onClick={check}>Check</button> */}
     </>
   );
 }

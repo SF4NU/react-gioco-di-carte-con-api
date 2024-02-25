@@ -1,11 +1,11 @@
-import Cards from "./Cards";
 import Header from "./Header";
+import FetchCards from "./FetchCards";
 
 function App() {
   return (
     <>
       <Header></Header>
-      <Cards></Cards>
+      <FetchCards></FetchCards>
     </>
   );
 }

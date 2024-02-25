@@ -104,10 +104,10 @@
   transform: rotate(2deg);
 }
 .get-card-2 {
-  transform: rotate(-3deg);
+  transform: rotate(-5deg);
 }
 .get-card-3 {
-  transform: rotate(5deg);
+  transform: rotate(-3deg);
 }
 .see-cards0 {
   animation: cards-animation1 0.3s ease-in-out forwards;
@@ -123,6 +123,7 @@
 }
 .card0-animation {
   animation: moveBack1 0.3s ease-in-out;
+  transform: rotate(5deg);
 }
 .card1-animation {
   animation: moveBack2 0.3s ease-in-out;
