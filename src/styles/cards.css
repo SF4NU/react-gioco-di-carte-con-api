@@ -8,6 +8,7 @@
   right: 0;
   bottom: 0;
   height: 320px;
+  margin-bottom: 20px;
 }
 .invisible-card {
   height: 300px;
@@ -52,13 +53,16 @@
   .card3 {
     scale: 0.7;
   }
+  .main-div {
+    bottom: -45px;
+  }
 }
 @media (min-width: 850px) {
   .card0,
   .card1,
   .card2,
   .card3 {
-    scale: 0.8;
+    scale: 0.75;
   }
 }
 @media (min-width: 1000px) {
@@ -74,7 +78,10 @@
   .card1,
   .card2,
   .card3 {
-    scale: 1;
+    scale: .95;
+  }
+  .main-div {
+    bottom: 10px;
   }
 }
 .card0,

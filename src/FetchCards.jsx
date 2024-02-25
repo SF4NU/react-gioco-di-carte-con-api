@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, createContext } from "react";
 import axios from "axios";
 import Cards from "./Cards";
+import PlayGame from "./PlayGame";
 
 export const DeckId = createContext();
 
@@ -28,6 +29,7 @@ function FetchCards() {
   return (
     <>
       <DeckId.Provider value={deckId}>
+        <PlayGame></PlayGame>
         <Cards></Cards>
       </DeckId.Provider>
     </>

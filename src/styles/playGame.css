@@ -1,0 +1,64 @@
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(2, minmax(200px, 250px));
+  place-items: center;
+  margin-top: 100px;
+}
+
+.playing-card-0,
+.playing-card-1,
+.playing-card-2,
+.playing-card-3 {
+  height: 300px;
+  width: 200px;
+  background-color: rgb(218, 218, 218);
+  filter: brightness(80%);
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: WesternGrit;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+  .playing-card-0,
+  .playing-card-1,
+  .playing-card-2,
+  .playing-card-3 {
+    scale: 0.6;
+  }
+  section {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+}
+@media (min-width: 500.5px) and (max-width: 750px) {
+  .playing-card-0,
+  .playing-card-1,
+  .playing-card-2,
+  .playing-card-3 {
+    scale: 0.65;
+  }
+  section {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+@media (min-width: 750.5px) and (max-width: 1000px) {
+  .playing-card-0,
+  .playing-card-1,
+  .playing-card-2,
+  .playing-card-3 {
+    scale: 0.75;
+  }
+  section {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}

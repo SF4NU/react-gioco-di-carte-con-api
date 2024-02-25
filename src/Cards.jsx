@@ -10,14 +10,15 @@ import spadesIcon from "./assets/spadesIcon.svg";
 import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
+import { handleCardsImages } from "./utils/handleCardsImages";
+import { handleCardsIcons } from "./utils/handleCardsIcons";
+import { time } from "./utils/timeout";
 
-function Cards(deckId) {
+function Cards() {
   
   const deck_id = useContext(DeckId);
   const renderOnce2 = useRef(true);
   const renderOnce3 = useRef(true);
-  const [suit, setSuit] = useState();
-  const [newCard, setNewCard] = useState(false);
   const seedsImage = [spades, hearts, clovers, diamonds];
   const seedsIcon = [spadesIcon, heartsIcon, cloversIcon, diamondsIcon];
   const [cardsList, setCardsList] = useState([]);
@@ -43,22 +44,13 @@ function Cards(deckId) {
               });
           } catch (error) {
             console.error(error);
-          } finally {
           }
-        };
+        }
         fetchData();
         renderOnce2.current = false;
       }
     }
-  }, [deck_id, newCard]);
-
-  const time = (ms) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(console.log("timeout"));
-      }, ms);
-    });
-  };
+  }, [deck_id]);
 
   useEffect(() => {
     if (renderOnce3.current) {
@@ -73,7 +65,7 @@ function Cards(deckId) {
             changedClass.classList.add("skip-card-animation");
             i++;
           }
-          await time(600);
+          await time(200);
           removeFirstAnimation();
         } catch (error) {
           console.log(error);
@@ -83,7 +75,7 @@ function Cards(deckId) {
       changeCardClasses();
     }
     renderOnce3.current = false;
-  }, []);
+  }, [renderOnce3]);
 
   function removeFirstAnimation() {
     let i = 0;
@@ -118,10 +110,6 @@ function Cards(deckId) {
         setCheckIfClicked((c) => (c = true));
       }
     }
-  }
-
-  function callApi() {
-    setNewCard((nc) => !nc);
   }
 
   const displayCards = cardsList.map((card, index) => (
@@ -161,26 +149,8 @@ function Cards(deckId) {
     </div>
   ));
 
-  function handleCardsIcons(card) {
-    const namedCards = ["QUEEN", "KING", "JACK", "ACE"];
-    if (namedCards.includes(card)) {
-      const newValue = card.charAt(0);
-      return newValue;
-    } else {
-      return card;
-    }
-  }
-  function handleCardsImages(card) {
-    if (card === "SPADES") {
-      return 0;
-    } else if (card === "HEARTS") {
-      return 1;
-    } else if (card === "CLUBS") {
-      return 2;
-    } else {
-      return 3;
-    }
-  }
+  
+  
 
   return (
     <>

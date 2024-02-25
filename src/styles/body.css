@@ -3,5 +3,8 @@ body {
   font-family: helvetica;
   font-family: Libre Baskerville;
   background-color: #E5E5E5;
-  height: 100vh;
+  height: 100dvh;
+}
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
