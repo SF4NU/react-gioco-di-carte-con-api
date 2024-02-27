@@ -8,7 +8,8 @@ export const DeckId = createContext();
 function FetchCards() {
   const renderOnce1 = useRef(true);
   const [deckId, setDeckId] = useState("");
-  const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`; 
+  const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
+  const [handCards, setHandCards] = useState([]);
 
   useEffect(() => {
     if (renderOnce1.current) {
@@ -29,8 +30,8 @@ function FetchCards() {
   return (
     <>
       <DeckId.Provider value={deckId}>
-        <PlayGame></PlayGame>
-        <Cards></Cards>
+        <PlayGame handCards={handCards}></PlayGame>
+        <Cards setHandCards={setHandCards}></Cards>
       </DeckId.Provider>
     </>
   );

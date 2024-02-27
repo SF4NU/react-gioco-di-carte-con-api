@@ -14,7 +14,7 @@ import { handleCardsImages } from "./utils/handleCardsImages";
 import { handleCardsIcons } from "./utils/handleCardsIcons";
 import { time } from "./utils/timeout";
 
-function Cards() {
+function Cards({ setHandCards }) {
   const deck_id = useContext(DeckId);
   const renderOnce2 = useRef(true);
   const renderOnce3 = useRef(true);
@@ -37,6 +37,7 @@ function Cards() {
               .then((res) => {
                 res.data.cards.map((card) => {
                   setCardsList((c) => [...c, card]);
+                  setHandCards((c) => [...c, card]);
                 });
               });
           } catch (error) {
@@ -109,50 +110,47 @@ function Cards() {
     }
   }
 
-  const displayCards = cardsList.map((card, index) => (
-    <div
-      key={index}
-      className={` get-card-${index} card${index}JS card${index}`}
-      onClick={() => {
-        seeCards();
-      }}
-      data-hoverCard={index}>
-      <div className="card-value-suit">
-        <div className="number">{handleCardsIcons(card.value)}</div>
-        <div>
-          <img
-            className="card-icon"
-            src={seedsIcon[handleCardsImages(card.suit)]}
-            alt="spades icon"
-          />
-        </div>
-      </div>
-      <div>
-        <img
-          className="card-image"
-          src={seedsImage[handleCardsImages(card.suit)]}
-          alt="spades card image"
-        />
-      </div>
-      <div className="card-value-suit-inverted">
-        <div className="number">{handleCardsIcons(card.value)}</div>
-        <div>
-          <img
-            className="card-icon"
-            src={seedsIcon[handleCardsImages(card.suit)]}
-            alt="spades icon"
-          />
-        </div>
-      </div>
-    </div>
-  ));
-
   return (
     <>
       <div className="main-div">
         <div className="cards">
           <div className="invisible-card"></div>
-          {displayCards}
+          {cardsList.map((card, index) => (
+            <div
+              key={index}
+              className={` get-card-${index} card${index}JS card${index}`}
+              onClick={() => {
+                seeCards();
+              }}>
+              <div className="card-value-suit">
+                <div className="number">{handleCardsIcons(card.value)}</div>
+                <div>
+                  <img
+                    className="card-icon"
+                    src={seedsIcon[handleCardsImages(card.suit)]}
+                    alt="spades icon"
+                  />
+                </div>
+              </div>
+              <div>
+                <img
+                  className="card-image"
+                  src={seedsImage[handleCardsImages(card.suit)]}
+                  alt="spades card image"
+                />
+              </div>
+              <div className="card-value-suit-inverted">
+                <div className="number">{handleCardsIcons(card.value)}</div>
+                <div>
+                  <img
+                    className="card-icon"
+                    src={seedsIcon[handleCardsImages(card.suit)]}
+                    alt="spades icon"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

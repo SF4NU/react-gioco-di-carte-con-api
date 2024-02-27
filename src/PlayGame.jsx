@@ -15,7 +15,7 @@ import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
 import _, { add, random } from "lodash";
 
-function PlayGame() {
+function PlayGame({ handCards }) {
   const renderOnce = useRef(true);
   let renderOnceValue = renderOnce.current;
   const renderOnce1 = useRef(true);
@@ -71,13 +71,9 @@ function PlayGame() {
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
-  function updateScore() {
+  function updateScore() {}
 
-  }
-
-  function chooseCard() {
-    
-  }
+  function chooseCard() {}
 
   return (
     <>
