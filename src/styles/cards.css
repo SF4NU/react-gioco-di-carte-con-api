@@ -86,6 +86,53 @@
     bottom: 10px;
   }
 }
+@media (orientation: landscape) and (min-height: 824.5px) and (max-height: 850px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .8;
+  }
+}
+@media (orientation: landscape) and (min-height: 760.5px) and (max-height: 824px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .7;
+    margin-top: 50px;
+  }
+}
+@media (orientation: landscape) and (min-height: 680px) and (max-height: 760px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .6;
+    margin-top: 100px;
+  }
+}
+@media (orientation: landscape) and (min-height: 240px) and (max-height: 450px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .3;
+    margin-top: 60px;
+  }
+  section span {
+    margin-bottom: 340px;
+  }
+}
+@media (min-width: 350.5px) and (max-width: 450px) and (min-height: 330px) and (max-height: 730px) {
+  .card0,
+  .card1,
+  .card2,
+  .card3 {
+    scale: .4;
+    margin-top: 30px;
+  }
+}
 /* @media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
   .card0,
   .card1,
@@ -106,7 +153,7 @@
 .card3 {
   height: 300px;
   width: 200px;
-  background-color: rgb(218, 218, 218);
+  background-color: #cdd8e7;
   filter: brightness(80%);
   border-radius: 15px;
   position: relative;
@@ -137,7 +184,7 @@
   transition: opacity 0.3s ease, transform 0.4s ease-out;
   border-radius: 150px;
   z-index: -1;
-  opacity: 1;
+  opacity: 0;
 }
 .card0::after,
 .card1::after,
