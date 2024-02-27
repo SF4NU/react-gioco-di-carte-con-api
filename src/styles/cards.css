@@ -25,7 +25,7 @@
   position: relative;
   place-content: center;
 }
-@media (min-width: 1028px) and (max-width: 1920px){
+@media (min-width: 1028px) and (max-width: 1920px) {
   .main-div {
     height: 330px;
   }
@@ -80,7 +80,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .95;
+    scale: 0.95;
   }
   .main-div {
     bottom: 10px;
@@ -119,6 +119,49 @@
   user-select: none;
   position: absolute;
   cursor: pointer;
+  overflow: hidden;
+}
+.card0::after,
+.card0::before,
+.card1::after,
+.card1::before,
+.card2::before,
+.card3::before,
+.card2::after,
+.card3::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #f0f0f0 100%);
+  transition: opacity 0.3s ease, transform 0.4s ease-out;
+  border-radius: 150px;
+  z-index: -1;
+  opacity: 1;
+}
+.card0::after,
+.card1::after,
+.card2::after,
+.card3::after {
+  transform: translate(-400px, 600px);
+}
+.card0::before,
+.card1::before,
+.card2::before,
+.card3::before {
+  transform: translate(400px, -600px);
+}
+
+.card0:hover::after,
+.card1:hover::after,
+.card2:hover::after,
+.card3:hover::after,
+.card0:hover::before,
+.card1:hover::before,
+.card2:hover::before,
+.card3:hover::before {
+  opacity: 0.7;
+  transform: translate(0);
 }
 .get-card-0 {
   transform: rotate(5deg);
@@ -199,7 +242,7 @@
     transform: translate(0px, -1500px);
   }
   100% {
-  opacity: 1;
+    opacity: 1;
   }
 }
 @keyframes moveBack1 {
@@ -293,4 +336,6 @@
   position: absolute;
   bottom: 5px;
   right: 15px;
+}
+[data-cardHover] {
 }

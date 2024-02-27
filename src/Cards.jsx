@@ -115,7 +115,8 @@ function Cards() {
       className={` get-card-${index} card${index}JS card${index}`}
       onClick={() => {
         seeCards();
-      }}>
+      }}
+      data-hoverCard={index}>
       <div className="card-value-suit">
         <div className="number">{handleCardsIcons(card.value)}</div>
         <div>
