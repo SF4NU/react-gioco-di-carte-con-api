@@ -27,6 +27,7 @@ function PlayGame({ handCards }) {
   const seedsImage = [spades, hearts, clovers, diamonds];
   const [randomCard, setRandomCard] = useState(4);
   const [cardsData, setCardsData] = useState([]);
+  const [score, setScore] = useState(0);
 
   const fetchCards = async () => {
     try {
@@ -71,15 +72,34 @@ function PlayGame({ handCards }) {
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
-  function updateScore() {}
-
-  function chooseCard() {}
+  function chooseCard(card) {
+    let count = 0;
+    for (let index = 0; index < handCards.length; index++) {
+      const handCard = handCards[index];
+      if (card.value === handCard.value) {
+        count++;
+      }
+    }
+    if (count > 0) {
+      setScore((c) => c + 1);
+      count = 0;
+    } else {
+      if (score > 0) {
+        setScore((c) => c - 1);
+      }
+    }
+  }
 
   return (
     <>
       <section>
         {cardsData.map((card, index) => (
-          <div key={index} className={`playing-card-${index}`}>
+          <div
+            key={index}
+            className={`playing-card-${index}`}
+            onClick={() => {
+              chooseCard(card);
+            }}>
             <div className="card-value-suit">
               <div className="number">{handleCardsIcons(card.value)}</div>
               <div>
@@ -109,7 +129,7 @@ function PlayGame({ handCards }) {
             </div>
           </div>
         ))}
-        <span className="countdown-number">0</span>
+        <span className="countdown-number">{score}</span>
       </section>
     </>
   );
