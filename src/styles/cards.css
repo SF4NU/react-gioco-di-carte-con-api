@@ -91,7 +91,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .8;
+    scale: 0.8;
   }
 }
 @media (orientation: landscape) and (min-height: 760.5px) and (max-height: 824px) {
@@ -99,7 +99,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .7;
+    scale: 0.7;
     margin-top: 50px;
   }
 }
@@ -108,7 +108,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .6;
+    scale: 0.6;
     margin-top: 100px;
   }
 }
@@ -117,7 +117,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .3;
+    scale: 0.3;
     margin-top: 60px;
   }
   section span {
@@ -129,7 +129,7 @@
   .card1,
   .card2,
   .card3 {
-    scale: .4;
+    scale: 0.4;
     margin-top: 30px;
   }
 }
@@ -168,48 +168,7 @@
   cursor: pointer;
   overflow: hidden;
 }
-.card0::after,
-.card0::before,
-.card1::after,
-.card1::before,
-.card2::before,
-.card3::before,
-.card2::after,
-.card3::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 600px;
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #f0f0f0 100%);
-  transition: opacity 0.3s ease, transform 0.4s ease-out;
-  border-radius: 150px;
-  z-index: -1;
-  opacity: 0;
-}
-.card0::after,
-.card1::after,
-.card2::after,
-.card3::after {
-  transform: translate(-400px, 600px);
-}
-.card0::before,
-.card1::before,
-.card2::before,
-.card3::before {
-  transform: translate(400px, -600px);
-}
 
-.card0:hover::after,
-.card1:hover::after,
-.card2:hover::after,
-.card3:hover::after,
-.card0:hover::before,
-.card1:hover::before,
-.card2:hover::before,
-.card3:hover::before {
-  opacity: 0.7;
-  transform: translate(0);
-}
 .get-card-0 {
   transform: rotate(5deg);
 }
@@ -234,31 +193,13 @@
 .see-cards3 {
   animation: cards-animation4 0.3s ease-in-out forwards;
 }
-.card0-animation {
-  animation: moveBack1 0.3s ease-in-out;
-  transform: rotate(5deg);
-}
-.card1-animation {
-  animation: moveBack2 0.3s ease-in-out;
-  transform: rotate(2deg);
-}
-.card2-animation {
-  animation: moveBack3 0.3s ease-in-out;
-  transform: rotate(-5deg);
-}
-.card3-animation {
-  animation: moveBack4 0.3s ease-in-out;
-  transform: rotate(-3deg);
-}
 .card0JS {
-  animation: moveBack1 0.3s ease-in-out;
   animation: on-render 1s ease-in-out forwards;
   animation-delay: 0ms;
   transform: rotate(5deg);
   opacity: 0;
 }
 .card1JS {
-  /* animation: moveBack2 0.3s ease-in-out; */
   animation: on-render 1s ease-in-out forwards;
   animation-delay: 200ms;
 
@@ -266,7 +207,6 @@
   transform: rotate(2deg);
 }
 .card2JS {
-  /* animation: moveBack3 0.3s ease-in-out; */
   animation: on-render 1s ease-in-out forwards;
   animation-delay: 400ms;
 
@@ -274,15 +214,11 @@
   transform: rotate(-5deg);
 }
 .card3JS {
-  /* animation: moveBack4 0.3s ease-in-out; */
   animation: on-render 1s ease-in-out forwards;
   animation-delay: 600ms;
 
   opacity: 0;
   transform: rotate(-3deg);
-}
-.skip-card-animation {
-  animation-delay: -1s;
 }
 @keyframes on-render {
   0% {
@@ -290,38 +226,6 @@
   }
   100% {
     opacity: 1;
-  }
-}
-@keyframes moveBack1 {
-  0% {
-    transform: translate(250px, -5px) rotate(20deg);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
-}
-@keyframes moveBack2 {
-  0% {
-    transform: translate(-250px, -5px) rotate(-20deg);
-  }
-  100% {
-    transform: rotate(2deg);
-  }
-}
-@keyframes moveBack3 {
-  0% {
-    transform: translate(80px, -45px) rotate(8deg);
-  }
-  100% {
-    transform: rotate(-5deg);
-  }
-}
-@keyframes moveBack4 {
-  0% {
-    transform: translate(-80px, -45px) rotate(-8deg);
-  }
-  100% {
-    transform: rotate(-3deg);
   }
 }
 @keyframes cards-animation1 {
@@ -383,6 +287,4 @@
   position: absolute;
   bottom: 5px;
   right: 15px;
-}
-[data-cardHover] {
 }

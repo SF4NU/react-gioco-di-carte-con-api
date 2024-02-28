@@ -60,11 +60,11 @@ function Cards({ setHandCards }) {
           while (i <= 3) {
             const changedClass = document.querySelector(`.card${i}`);
             changedClass.classList.remove(`card${i}JS`);
-            changedClass.classList.add("skip-card-animation");
             i++;
+            console.log("???");
           }
           await time(200);
-          removeFirstAnimation();
+          seeCards();
         } catch (error) {
           console.log(error);
         }
@@ -75,40 +75,41 @@ function Cards({ setHandCards }) {
     renderOnce3.current = false;
   }, [renderOnce3]);
 
-  function removeFirstAnimation() {
+  function seeCards() {
+    console.log("hello");
     let i = 0;
     while (i <= 3) {
       const changedClass = document.querySelector(`.card${i}`);
-      changedClass.classList.remove("skip-card-animation");
+      changedClass.classList.add(`see-cards${i}`);
       i++;
     }
   }
 
-  function seeCards() {
-    if (checkIfReadyToAnimate) {
-      if (checkIfClicked) {
-        cardsList.map((card, index) => {
-          document
-            .querySelector(`.get-card-${index}`)
-            .classList.remove(`card${index}-animation`);
-          document
-            .querySelector(`.get-card-${index}`)
-            .classList.add(`see-cards${index}`);
-        });
-        setCheckIfClicked((c) => (c = false));
-      } else {
-        cardsList.map((card, index) => {
-          document
-            .querySelector(`.get-card-${index}`)
-            .classList.remove(`see-cards${index}`);
-          document
-            .querySelector(`.get-card-${index}`)
-            .classList.add(`card${index}-animation`);
-        });
-        setCheckIfClicked((c) => (c = true));
-      }
-    }
-  }
+  // function seeCards() {
+  //   if (checkIfReadyToAnimate) {
+  //     if (checkIfClicked) {
+  //       cardsList.map((card, index) => {
+  //         document
+  //           .querySelector(`.get-card-${index}`)
+  //           .classList.remove(`card${index}-animation`);
+  //         document
+  //           .querySelector(`.get-card-${index}`)
+  //           .classList.add(`see-cards${index}`);
+  //       });
+  //       setCheckIfClicked((c) => (c = false));
+  //     } else {
+  //       cardsList.map((card, index) => {
+  //         document
+  //           .querySelector(`.get-card-${index}`)
+  //           .classList.remove(`see-cards${index}`);
+  //         document
+  //           .querySelector(`.get-card-${index}`)
+  //           .classList.add(`card${index}-animation`);
+  //       });
+  //       setCheckIfClicked((c) => (c = true));
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -118,10 +119,7 @@ function Cards({ setHandCards }) {
           {cardsList.map((card, index) => (
             <div
               key={index}
-              className={` get-card-${index} card${index}JS card${index}`}
-              onClick={() => {
-                seeCards();
-              }}>
+              className={` get-card-${index} card${index}JS card${index}`}>
               <div className="card-value-suit">
                 <div className="number">{handleCardsIcons(card.value)}</div>
                 <div>
