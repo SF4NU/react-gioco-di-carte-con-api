@@ -10,13 +10,47 @@ section {
   margin-top: 100px;
   position: relative;
 }
-
+.main-card-container {
+}
+[class^="card-wrapper-"] {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  transition: transform 0.3s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+[class^="back-"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  z-index: 2;
+  transform: rotateY(180deg);
+  background-color: red;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: WesternGrit;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  cursor: pointer;
+  top: 0;
+  transition: transform 0.5s ease;
+}
+.flipped {
+  transform: rotateY(180deg);
+}
 .playing-card-0,
 .playing-card-1,
 .playing-card-2,
 .playing-card-3 {
-  height: 300px;
-  width: 200px;
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
   background-color: #cdd8e7;
   filter: brightness(80%);
   border-radius: 15px;
@@ -30,7 +64,7 @@ section {
   user-select: none;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 .playing-card-0::after,
 .playing-card-1::after,
@@ -84,19 +118,22 @@ section {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.6;
   }
   section {
     margin-top: 0;
     grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
+  
 }
 @media (min-width: 500.5px) and (max-width: 750px) {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.65;
   }
   section {
@@ -108,7 +145,8 @@ section {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.45;
   }
   section {
@@ -120,7 +158,8 @@ section {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.75;
   }
   section {
@@ -132,7 +171,8 @@ section {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.8;
   }
   section span {
@@ -143,7 +183,8 @@ section {
   .playing-card-0,
   .playing-card-1,
   .playing-card-2,
-  .playing-card-3 {
+  .playing-card-3,
+  [class^="back-"] {
     scale: 0.4;
   }
   section span {

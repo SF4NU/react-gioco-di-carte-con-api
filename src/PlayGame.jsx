@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
 import axios from "axios";
 import { DeckId } from "./FetchCards";
 import "./styles/playGame.css";
@@ -13,7 +13,7 @@ import spadesIcon from "./assets/spadesIcon.svg";
 import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
-import _, { add, random } from "lodash";
+import _, { add, flip, random } from "lodash";
 
 function PlayGame({ handCards }) {
   const renderOnce = useRef(true);
@@ -28,6 +28,10 @@ function PlayGame({ handCards }) {
   const [randomCard, setRandomCard] = useState(4);
   const [cardsData, setCardsData] = useState([]);
   const [score, setScore] = useState(0);
+  // const isFlipped = useRef(false);
+  const [isFlipped, setIsFlipped] = useState(
+    Array(cardsData.length).fill(false)
+  );
 
   const fetchCards = async () => {
     try {
@@ -45,6 +49,7 @@ function PlayGame({ handCards }) {
           newValuesNumber--;
         }
         setCardsData(newData);
+        setIsFlipped(Array(cardsData.length).fill(false));
       }
       addOnce.current = false;
       return getCardsData;
@@ -72,7 +77,7 @@ function PlayGame({ handCards }) {
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
-  function chooseCard(card) {
+  function chooseCard(card, i) {
     let count = 0;
     for (let index = 0; index < handCards.length; index++) {
       const handCard = handCards[index];
@@ -80,58 +85,77 @@ function PlayGame({ handCards }) {
         count++;
       }
     }
-    if (count > 0) {
+    if (count > 0 && !isFlipped[i]) {
       setScore((c) => c + 1);
       count = 0;
-    } else {
+      flipCard(i);
+    } else if (count === 0 && !isFlipped[i]) {
+      flipCard(i);
       if (score > 0) {
         setScore((c) => c - 1);
       }
     }
   }
+  function flipCard(index) {
+    if (!isFlipped[index]) {
+      const newFlippedCards = [...isFlipped];
+      newFlippedCards[index] = !newFlippedCards[index];
+      setIsFlipped(newFlippedCards);
+    }
+  }
 
   return (
-    <>
-      <section>
-        {cardsData.map((card, index) => (
+    <section>
+      {cardsData.map((card, index) => (
+        <div
+          key={card.code}
+          className={`main-card-container`}
+          onClick={() => {
+            chooseCard(card, index);
+          }}>
           <div
-            key={index}
-            className={`playing-card-${index}`}
+            className={`card-wrapper-${index} ${
+              isFlipped[index] ? "flipped" : ""
+            }`}
             onClick={() => {
-              chooseCard(card);
+              flipCard(index);
             }}>
-            <div className="card-value-suit">
-              <div className="number">{handleCardsIcons(card.value)}</div>
+            <div className={`playing-card-${index}`}>
+              <div className="card-value-suit">
+                <div className="number">{handleCardsIcons(card.value)}</div>
+                <div>
+                  <img
+                    className="card-icon"
+                    src={seedsIcon[handleCardsImages(card.suit)]}
+                    alt="spades icon"
+                  />
+                </div>
+              </div>
               <div>
                 <img
-                  className="card-icon"
-                  src={seedsIcon[handleCardsImages(card.suit)]}
-                  alt="spades icon"
+                  className="card-image"
+                  src={seedsImage[handleCardsImages(card.suit)]}
+                  alt="spades card image"
                 />
               </div>
-            </div>
-            <div>
-              <img
-                className="card-image"
-                src={seedsImage[handleCardsImages(card.suit)]}
-                alt="spades card image"
-              />
-            </div>
-            <div className="card-value-suit-inverted">
-              <div className="number">{handleCardsIcons(card.value)}</div>
-              <div>
-                <img
-                  className="card-icon"
-                  src={seedsIcon[handleCardsImages(card.suit)]}
-                  alt="spades icon"
-                />
+              <div className="card-value-suit-inverted">
+                <div className="number">{handleCardsIcons(card.value)}</div>
+                <div>
+                  <img
+                    className="card-icon"
+                    src={seedsIcon[handleCardsImages(card.suit)]}
+                    alt="spades icon"
+                  />
+                </div>
               </div>
             </div>
+
+            <div className={`back-${card.code}`}></div>
           </div>
-        ))}
-        <span className="countdown-number">{score}</span>
-      </section>
-    </>
+        </div>
+      ))}
+      <span className="countdown-number">{score}</span>
+    </section>
   );
 }
 

@@ -61,7 +61,6 @@ function Cards({ setHandCards }) {
             const changedClass = document.querySelector(`.card${i}`);
             changedClass.classList.remove(`card${i}JS`);
             i++;
-            console.log("???");
           }
           await time(200);
           seeCards();
@@ -76,7 +75,6 @@ function Cards({ setHandCards }) {
   }, [renderOnce3]);
 
   function seeCards() {
-    console.log("hello");
     let i = 0;
     while (i <= 3) {
       const changedClass = document.querySelector(`.card${i}`);
