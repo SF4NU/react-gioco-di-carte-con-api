@@ -1,0 +1,10 @@
+.countdown-div-h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90dvh;
+  font-size: 4rem;
+}
+.countdown-h1 {
+  color: #E9E0F8;
+}
