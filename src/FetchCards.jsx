@@ -17,6 +17,7 @@ function FetchCards() {
         try {
           const deck = await axios.get(URL).then((res) => {
             setDeckId((d) => (d = res.data.deck_id));
+            console.log("worked!");
           });
         } catch (error) {
           console.error(error);

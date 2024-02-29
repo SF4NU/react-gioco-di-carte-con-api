@@ -1,0 +1,97 @@
+.button-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  flex-direction: column;
+}
+.button {
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-weight: 500;
+  box-sizing: border-box;
+  background-color: #ffca74;
+  color: #4c00c7;
+  border: none;
+  border-radius: 50px;
+  height: 100px;
+  min-width: 250px;
+  cursor: pointer;
+  transition: opacity 0.2s scale 0.2s font-size 0,2s font-weight 0.2s;
+}
+.start-button {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  animation: start-animation 2.5s linear 1 forwards;
+  box-shadow: 5px -5px 20px rgba(255, 255, 255, 0.2);
+}
+.start-button:hover,
+.rules-button:hover,
+.github-button:hover {
+  opacity: .85;
+}
+.start-button:active,
+.rules-button:active,
+.github-button:active {
+  font-size: 2rem;
+  scale: 1.05;
+  font-weight: bold;
+}
+@keyframes start-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-40px);
+  }
+  70% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+.rules-button {
+  border-radius: 0;
+  animation: rules-animation 1s ease-in-out 1 forwards;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+@keyframes rules-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.github-button {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  animation: github-animation 2.5s linear 1 forwards;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.2);
+}
+@keyframes github-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(1000px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(40px);
+  }
+  70% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}

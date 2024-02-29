@@ -10,8 +10,6 @@ section {
   margin-top: 100px;
   position: relative;
 }
-.main-card-container {
-}
 [class^="card-wrapper-"] {
   width: 200px;
   height: 300px;
