@@ -18,7 +18,7 @@ function SeeRules({setRules}) {
     <ul className="first-ul">
       <li>Il tuo <b>obiettivo</b> è accumulare il punteggio più alto possibile.</li>
       <li>Ogni carta ha un numero associato: A, 2, 3, ..., 10, J, Q, K.</li>
-      <li>Il <b>punteggio aumenta</b>  di 1 ogni volta che indovini correttamente il <b>valore</b> di una carta e il suo <b>colore</b>.</li>
+      <li>Il <b>punteggio aumenta</b>  di 1 ogni volta che schiacci su una carta corrispondente a quelle che hai in mano</li>
       <li>Il <b>punteggio diminuisce</b> di 1 ogni volta che sbagli.</li>
     </ul>
     <p className="p2">Come giocare:</p>
@@ -30,7 +30,7 @@ function SeeRules({setRules}) {
     <p className="p3">Ricorda:</p>
     <ul className="third-ul">
       <li>Le carte vengono mostrate solo per un breve periodo, quindi <b>presta attenzione!</b></li>
-      <li>Concentrati sui <b>valori e colori</b> delle carte e cerca di <b>ricordarli</b> per migliorare il tuo punteggio.</li>
+      <li>Concentrati sui <b>valori e semi</b> delle carte e cerca di <b>ricordarli</b> per migliorare il tuo punteggio.</li>
     </ul>
   </div>
 </section>

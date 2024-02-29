@@ -51,7 +51,7 @@ function PlayGame({ handCards }) {
         const newData = [...getCardsData];
         setCardsData(newData);
         setIsFlipped(Array(cardsData.length).fill(false));
-        setRemainingCards(c => c - 4);
+        setRemainingCards((c) => c - 4);
       }
       addOnce.current = false;
       return getCardsData;
@@ -73,7 +73,7 @@ function PlayGame({ handCards }) {
       if (renderOnceValue1) {
         if (checkTime) {
           setCheckTime(false);
-            await time(4500);
+          await time(4500);
         }
         console.log("time passed");
         setInterval(() => {
@@ -82,9 +82,9 @@ function PlayGame({ handCards }) {
           renderOnce.current = true;
         }, 2000);
       }
-    }
+    };
     timer();
-    
+
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
@@ -113,18 +113,10 @@ function PlayGame({ handCards }) {
     let count = 0;
     for (let index = 0; index < handCards.length; index++) {
       const handCard = handCards[index];
-      if (card.value === handCard.value) {
-        if (
-          blackColors.includes(handCard.suit) &&
-          blackColors.includes(card.suit)
-        ) {
+      if (card.value === handCard.value && card.suit === handCard.suit) {
+        {
           count++;
         }
-      } else if (
-        redColors.includes(handCard.suit) &&
-        redColors.includes(card.suit)
-      ) {
-        count++;
       }
     }
     if (count > 0 && !isFlipped[i]) {
@@ -197,7 +189,7 @@ function PlayGame({ handCards }) {
         </div>
       ))}
       <span className="countdown-number">{score}</span>
-      <span className="remaining-cards">Carte rimaste:{remainingCards}</span>
+      <span className="remaining-cards">Carte rimaste: {remainingCards}</span>
     </section>
   );
 }
