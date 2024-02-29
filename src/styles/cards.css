@@ -153,7 +153,44 @@
 .card3 {
   height: 300px;
   width: 200px;
-  background-color: #cdd8e7;
+  background: radial-gradient(
+        circle farthest-side at 0% 50%,
+        #e4e1ec 23.5%,
+        #0000 0
+      )
+      18.9px 27px,
+    radial-gradient(circle farthest-side at 0% 50%, #ffffff 24%, #0000 0) 17.1px
+      27px,
+    linear-gradient(#e4e1ec 14%, #0000 0, #0000 85%, #e4e1ec 0) 0 0,
+    linear-gradient(
+        150deg,
+        #e4e1ec 24%,
+        #ffffff 0,
+        #ffffff 26%,
+        #0000 0,
+        #0000 74%,
+        #ffffff 0,
+        #ffffff 76%,
+        #e4e1ec 0
+      )
+      0 0,
+    linear-gradient(
+        30deg,
+        #e4e1ec 24%,
+        #ffffff 0,
+        #ffffff 26%,
+        #0000 0,
+        #0000 74%,
+        #ffffff 0,
+        #ffffff 76%,
+        #e4e1ec 0
+      )
+      0 0,
+    linear-gradient(90deg, #ffffff 2%, #e4e1ec 0, #e4e1ec 98%, #ffffff 0%) 0 0
+      #e4e1ec;
+  background-size: 36px 54px;
+  background-color: #e4e1ec;
+
   filter: brightness(80%);
   border-radius: 15px;
   position: relative;

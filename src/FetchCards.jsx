@@ -5,7 +5,7 @@ import PlayGame from "./PlayGame";
 
 export const DeckId = createContext();
 
-function FetchCards() {
+function FetchCards({ setCheckHowManyCards, setFinalScore }) {
   const renderOnce1 = useRef(true);
   const [deckId, setDeckId] = useState("");
   const URL = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
@@ -31,7 +31,10 @@ function FetchCards() {
   return (
     <>
       <DeckId.Provider value={deckId}>
-        <PlayGame handCards={handCards}></PlayGame>
+        <PlayGame
+          handCards={handCards}
+          setCheckHowManyCards={setCheckHowManyCards}
+          setFinalScore={setFinalScore}></PlayGame>
         <Cards setHandCards={setHandCards}></Cards>
       </DeckId.Provider>
     </>

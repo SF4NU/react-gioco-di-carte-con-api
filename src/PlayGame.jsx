@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import { DeckId } from "./FetchCards";
 import "./styles/playGame.css";
@@ -16,7 +16,7 @@ import diamondsIcon from "./assets/diamondsIcon.svg";
 import _, { add, flip, random } from "lodash";
 import { time } from "./utils/timeout.js";
 
-function PlayGame({ handCards }) {
+function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
   const renderOnce = useRef(true);
   let renderOnceValue = renderOnce.current;
   const renderOnce1 = useRef(true);
@@ -35,7 +35,7 @@ function PlayGame({ handCards }) {
   );
   const [waitBeforeStarting, setWaitBeforeStarting] = useState(true);
   const [checkTime, setCheckTime] = useState(true);
-  const [remainingCards, setRemainingCards] = useState(200);
+  const [remainingCards, setRemainingCards] = useState(196);
 
   const fetchCards = async () => {
     try {
@@ -52,6 +52,8 @@ function PlayGame({ handCards }) {
         setCardsData(newData);
         setIsFlipped(Array(cardsData.length).fill(false));
         setRemainingCards((c) => c - 4);
+        setFinalScore(score);
+        setCheckHowManyCards(remainingCards);
       }
       addOnce.current = false;
       return getCardsData;
@@ -80,7 +82,7 @@ function PlayGame({ handCards }) {
           const randomNumber = _.random(1, 4);
           setRandomCard((r) => (r = randomNumber));
           renderOnce.current = true;
-        }, 2000);
+        }, 2500);
       }
     };
     timer();

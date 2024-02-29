@@ -1,0 +1,103 @@
+.game-over {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #4c00c7;
+  user-select: none;
+}
+.game-over div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffca74;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.25);
+  width: 370px;
+  height: 130px;
+  border-radius: 70px;
+  border: none;
+}
+.game-over div:first-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  animation: start-animation 2.5s linear 1 forwards;
+}
+
+.game-over div:nth-child(2) {
+  border-radius: 0;
+  animation: rules-animation 1s ease-in-out 1 forwards;
+}
+
+.game-over div:nth-child(3) {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  animation: github-animation 2.5s linear 1 forwards;
+}
+.go-back-button {
+  height: 50px;
+}
+.game-over-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 60px;
+}
+.game-over-choices {
+  display: flex;
+  column-gap: 20px;
+}
+.go-back-to-menu-button,
+.play-again-button {
+  height: 80px;
+  width: 180px;
+  font-size: 1.5rem;
+  border-radius: 30px;
+  border: none;
+  background-color: #4c00c7;
+  color: #fffceb;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.go-back-to-menu-button:hover,
+.play-again-button:hover {
+  filter: brightness(1.3);
+}
+.go-back-to-menu-button:active,
+.play-again-button:active {
+  transform: scale(1.1);
+}
+.go-back-to-menu-button {
+  animation: back-to-menu-animation 2.4s ease 1 forwards;
+}
+.play-again-button {
+  animation: play-again-animation 2.4s ease 1 forwards;
+}
+
+@keyframes back-to-menu-animation {
+  0% {
+    opacity: 0.3;
+    transform: translateX(-1000px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes play-again-animation {
+  0% {
+    opacity: 0.3;
+    transform: translateX(1000px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
