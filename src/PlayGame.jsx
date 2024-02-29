@@ -14,6 +14,7 @@ import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
 import _, { add, flip, random } from "lodash";
+import { time } from "./utils/timeout.js";
 
 function PlayGame({ handCards }) {
   const renderOnce = useRef(true);
@@ -27,29 +28,30 @@ function PlayGame({ handCards }) {
   const seedsImage = [spades, hearts, clovers, diamonds];
   const [randomCard, setRandomCard] = useState(4);
   const [cardsData, setCardsData] = useState([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState("Preparati!");
   // const isFlipped = useRef(false);
   const [isFlipped, setIsFlipped] = useState(
     Array(cardsData.length).fill(false)
   );
+  const [waitBeforeStarting, setWaitBeforeStarting] = useState(true);
+  const [checkTime, setCheckTime] = useState(true);
+  const [remainingCards, setRemainingCards] = useState(200);
 
   const fetchCards = async () => {
     try {
+      await waitBeforeStartingGame();
       const response = await axios.get(
-        `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=${randomCard}`
+        `https://deckofcardsapi.com/api/deck/new/draw/?count=${4}`
       );
       const getCardsData = response.data.cards;
       if (addOnceValue) {
         setCardsData(getCardsData);
       } else {
         let newValuesNumber = getCardsData.length;
-        const newData = [...cardsData];
-        while (newValuesNumber > 0) {
-          newData[newValuesNumber - 1] = getCardsData[newValuesNumber - 1];
-          newValuesNumber--;
-        }
+        const newData = [...getCardsData];
         setCardsData(newData);
         setIsFlipped(Array(cardsData.length).fill(false));
+        setRemainingCards(c => c - 4);
       }
       addOnce.current = false;
       return getCardsData;
@@ -67,21 +69,61 @@ function PlayGame({ handCards }) {
   }, [deck_id, randomCard]);
 
   useEffect(() => {
-    if (renderOnceValue1) {
-      setInterval(() => {
-        const randomNumber = _.random(1, 4);
-        setRandomCard((r) => (r = randomNumber));
-        renderOnce.current = true;
-      }, 3000);
+    const timer = async () => {
+      if (renderOnceValue1) {
+        if (checkTime) {
+          setCheckTime(false);
+            await time(4500);
+        }
+        console.log("time passed");
+        setInterval(() => {
+          const randomNumber = _.random(1, 4);
+          setRandomCard((r) => (r = randomNumber));
+          renderOnce.current = true;
+        }, 2000);
+      }
     }
+    timer();
+    
     renderOnce1.current = false;
   }, [renderOnceValue1]);
 
+  const waitBeforeStartingGame = async () => {
+    try {
+      if (waitBeforeStarting) {
+        setWaitBeforeStarting(false);
+        console.log("started");
+        await time(1000);
+        setScore("3");
+        await time(1000);
+        setScore("2");
+        await time(1000);
+        setScore("1");
+        await time(1000);
+        setScore(0);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   function chooseCard(card, i) {
+    const blackColors = ["CLUBS", "SPADES"];
+    const redColors = ["HEARTS", "DIAMONDS"];
     let count = 0;
     for (let index = 0; index < handCards.length; index++) {
       const handCard = handCards[index];
       if (card.value === handCard.value) {
+        if (
+          blackColors.includes(handCard.suit) &&
+          blackColors.includes(card.suit)
+        ) {
+          count++;
+        }
+      } else if (
+        redColors.includes(handCard.suit) &&
+        redColors.includes(card.suit)
+      ) {
         count++;
       }
     }
@@ -155,6 +197,7 @@ function PlayGame({ handCards }) {
         </div>
       ))}
       <span className="countdown-number">{score}</span>
+      <span className="remaining-cards">Carte rimaste:{remainingCards}</span>
     </section>
   );
 }
