@@ -17,20 +17,10 @@
   position: absolute;
 }
 .cards {
-  /* display: grid;
-  margin-left: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  place-items: center;
-  grid-gap: 20px 160px; */
   display: flex;
   position: relative;
   place-content: center;
 }
-/* @media (min-width: 1400.5px) and (max-width: 1920px) {
-  .main-div {
-    scale: .8;
-  }
-} */
 @media (min-width: 0px) and (max-width: 596px) {
   .main-div {
     transform: scale(0.4);

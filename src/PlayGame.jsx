@@ -60,15 +60,6 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       console.error("Error fetching cards:", error);
     }
   };
-  // useEffect(() => {
-  //   if (deck_id) {
-  //     if (renderOnceValue) {
-  //       fetchCards();
-  //     }
-  //     renderOnce.current = false;
-  //   }
-  // }, [renderCards]);
-
   useEffect(() => {
     const waitForIt = async () => {
       let run = 0;

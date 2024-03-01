@@ -83,31 +83,6 @@ function Cards({ setHandCards }) {
     }
   }
 
-  // function seeCards() {
-  //   if (checkIfReadyToAnimate) {
-  //     if (checkIfClicked) {
-  //       cardsList.map((card, index) => {
-  //         document
-  //           .querySelector(`.get-card-${index}`)
-  //           .classList.remove(`card${index}-animation`);
-  //         document
-  //           .querySelector(`.get-card-${index}`)
-  //           .classList.add(`see-cards${index}`);
-  //       });
-  //       setCheckIfClicked((c) => (c = false));
-  //     } else {
-  //       cardsList.map((card, index) => {
-  //         document
-  //           .querySelector(`.get-card-${index}`)
-  //           .classList.remove(`see-cards${index}`);
-  //         document
-  //           .querySelector(`.get-card-${index}`)
-  //           .classList.add(`card${index}-animation`);
-  //       });
-  //       setCheckIfClicked((c) => (c = true));
-  //     }
-  //   }
-  // }
 
   return (
     <>
