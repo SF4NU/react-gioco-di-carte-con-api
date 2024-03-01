@@ -3,12 +3,13 @@
   src: url(../assets/WesternGrit-Regular.ttf);
 }
 .main-div {
-  position: absolute;
-  bottom: 100px;
+  position: fixed;
   left: 0;
   right: 0;
-  height: 230px;
+  bottom: 0;
   z-index: 25;
+  transform: scale(0.7);
+  height: 300px;
 }
 .invisible-card {
   height: 300px;
@@ -25,7 +26,20 @@
   position: relative;
   place-content: center;
 }
-@media (min-width: 1028px) and (max-width: 1920px) {
+/* @media (min-width: 1400.5px) and (max-width: 1920px) {
+  .main-div {
+    scale: .8;
+  }
+} */
+@media (min-width: 0px) and (max-width: 596px) {
+  .main-div {
+    transform: scale(0.4);
+    bottom: -30px;
+  }
+  
+}
+
+/* @media (min-width: 1028px) and (max-width: 1920px) {
   .main-div {
     height: 330px;
   }
@@ -132,7 +146,7 @@
     scale: 0.4;
     margin-top: 30px;
   }
-}
+} */
 /* @media (orientation: landscape) and (min-width: 600px) and (max-width: 1000px) {
   .card0,
   .card1,
@@ -142,11 +156,11 @@
     scale: .4;
   }
 } */
-@media (min-height: 0px) and (max-height: 820px) {
+/* @media (min-height: 0px) and (max-height: 820px) {
   .main-div {
     bottom: 30px;
   }
-}
+} */
 .card0,
 .card1,
 .card2,

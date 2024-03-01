@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: Poppins;
   background-color: #2f007b;
-  max-height: 100dvh;
+  min-height: 100dvh;
   /* touch-action: none; */
 }
 html {

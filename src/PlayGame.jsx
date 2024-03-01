@@ -197,7 +197,7 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       ))}
       <span className="countdown-number">{score}</span>
       <span className="remaining-cards">Carte rimaste: {remainingCards}</span>
-      <span className="remaining-cards change-cards">Cambio tra: {changeCards}</span>
+      <span className="change-cards">Cambio tra: {changeCards}</span>
     </section>
   );
 }
