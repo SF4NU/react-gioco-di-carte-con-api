@@ -33,7 +33,7 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
   );
   const [waitBeforeStarting, setWaitBeforeStarting] = useState(true);
   const [checkTime, setCheckTime] = useState(true);
-  const [remainingCards, setRemainingCards] = useState(0);
+  const [remainingCards, setRemainingCards] = useState(200);
   const [renderCards, setRenderCards] = useState(false);
   const [shouldWait, setShouldWait] = useState(false);
   const [changeCards, setChangeCards] = useState(3);
