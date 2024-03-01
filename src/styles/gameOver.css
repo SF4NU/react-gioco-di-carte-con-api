@@ -23,20 +23,25 @@
   border-radius: 70px;
   border: none;
 }
+.game-over .enter-animation1 {
+  animation: start-animation 2.5s linear 1 forwards;
+}
 .game-over div:first-child {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  animation: start-animation 2.5s linear 1 forwards;
 }
-
 .game-over div:nth-child(2) {
   border-radius: 0;
-  animation: rules-animation 1s ease-in-out 1 forwards;
 }
-
 .game-over div:nth-child(3) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+}
+.game-over .enter-animation2 {
+  animation: rules-animation 1s ease-in-out 1 forwards;
+}
+
+.game-over .enter-animation3 {
   animation: github-animation 2.5s linear 1 forwards;
 }
 .go-back-button {
@@ -74,10 +79,10 @@
 .play-again-button:active {
   transform: scale(1.1);
 }
-.go-back-to-menu-button {
+.enter-animation4 {
   animation: back-to-menu-animation 2.4s ease 1 forwards;
 }
-.play-again-button {
+.enter-animation5 {
   animation: play-again-animation 2.4s ease 1 forwards;
 }
 
@@ -99,5 +104,70 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+.exit-animation-1 {
+  animation: exit-animation-1 1s ease forwards;
+}
+.exit-animation-2 {
+  animation: exit-animation-2 1s ease forwards;
+}
+.exit-animation-3 {
+  animation: exit-animation-3 1s ease forwards;
+}
+.exit-animation-4 {
+  animation: exit-animation-4 1s ease forwards;
+}
+.exit-animation-5 {
+  animation: exit-animation-5 1s ease forwards;
+}
+@keyframes exit-animation-1 {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+}
+@keyframes exit-animation-2 {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+}
+@keyframes exit-animation-3 {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(1000px);
+  }
+}
+@keyframes exit-animation-4 {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+}
+@keyframes exit-animation-5 {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-1000px);
   }
 }
