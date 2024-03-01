@@ -13,7 +13,6 @@ import spadesIcon from "./assets/spadesIcon.svg";
 import heartsIcon from "./assets/heartsIcon.svg";
 import cloversIcon from "./assets/cloversIcon.svg";
 import diamondsIcon from "./assets/diamondsIcon.svg";
-import _, { add, flip, random } from "lodash";
 import { time } from "./utils/timeout.js";
 
 function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
@@ -26,7 +25,6 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
   const deck_id = useContext(DeckId);
   const seedsIcon = [spadesIcon, heartsIcon, cloversIcon, diamondsIcon];
   const seedsImage = [spades, hearts, clovers, diamonds];
-  const [randomCard, setRandomCard] = useState(4);
   const [cardsData, setCardsData] = useState([]);
   const [score, setScore] = useState("Preparati!");
   // const isFlipped = useRef(false);
@@ -47,7 +45,6 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       if (addOnceValue) {
         setCardsData(getCardsData);
       } else {
-        let newValuesNumber = getCardsData.length;
         const newData = [...getCardsData];
         setCardsData(newData);
         setIsFlipped(Array(cardsData.length).fill(false));
@@ -68,7 +65,7 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       }
       renderOnce.current = false;
     }
-  }, [deck_id, randomCard]);
+  }, [deck_id]);
 
   useEffect(() => {
     const timer = async () => {
@@ -77,12 +74,9 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
           setCheckTime(false);
           await time(4500);
         }
-        console.log("time passed");
         setInterval(() => {
-          const randomNumber = _.random(1, 4);
-          setRandomCard((r) => (r = randomNumber));
           renderOnce.current = true;
-        }, 2500);
+        }, 3000);
       }
     };
     timer();
