@@ -7,13 +7,6 @@ section {
   justify-content: center;
   justify-items: center;
 }
-/* @media (min-width: 1400.5px) and (max-width: 1920px) {
-  [class^="card-wrapper-"] {
-  }
-  .main-card-container {
-    transform: scale(.7);
-  }
-} */
 @media (min-width: 0.5px) and (max-width: 597px) {
   section {
     grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
@@ -26,7 +19,7 @@ section {
     font-size: 3rem;
   }
   .main-card-container {
-    transform: scale(.7);
+    transform: scale(0.7);
   }
   .playing-card-3,
   .playing-card-2 {
@@ -35,22 +28,33 @@ section {
   .playing-card-0,
   .playing-card-1 {
     margin-top: -50px;
-  } 
+  }
 }
 .main-card-container {
-  scale: .7;
+  scale: 0.7;
   grid-row: span 1;
   grid-column: span 1;
 }
 .change-cards {
   font-size: 2rem;
-  /* animation: score-and-remaining 2s ease forwards; */
+  animation: change-cards 0.5s ease forwards;
   position: fixed;
   bottom: 320px;
 }
 .countdown-number {
   position: fixed;
   bottom: 360px;
+  animation: change-cards 0.5s ease forwards;
+}
+@keyframes change-cards {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 [class^="card-wrapper-"] {
   width: 200px;
@@ -294,29 +298,10 @@ section span {
   font-size: 2rem;
   position: absolute;
   bottom: -60px;
-  animation: score-and-remaining 2s ease forwards;
+  animation: change-cards 0.5s ease forwards;
   position: fixed;
   bottom: 0px;
 }
-/* @media (min-width: 1040px) and (max-width: 1534px) {
-  .remaining-cards {
-    bottom: -160px;
-  }
-}
-@media (min-width: 1534.5px) and (max-width: 1920px) {
-  .remaining-cards {
-    left: 40px;
-    bottom: 20px;
-  }
-}
-@media (min-width: 0.5px) and (max-width: 992px) {
-}
-@media (min-width: 350.5px) and (max-width: 450px) and (min-height: 330px) and (max-height: 730px) {
-  .remaining-cards {
-    bottom: 20px;
-  }
-} */
-
 [class^="playing-card-"] {
   animation: cards-in-out 0.5s ease forwards;
 }
