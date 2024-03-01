@@ -34,10 +34,12 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
   const [waitBeforeStarting, setWaitBeforeStarting] = useState(true);
   const [checkTime, setCheckTime] = useState(true);
   const [remainingCards, setRemainingCards] = useState(196);
+  const [renderCards, setRenderCards] = useState(false);
+  const [shouldWait, setShouldWait] = useState(false);
+  const [changeCards, setChangeCards] = useState(3);
 
   const fetchCards = async () => {
     try {
-      await waitBeforeStartingGame();
       const response = await axios.get(
         `https://deckofcardsapi.com/api/deck/new/draw/?count=${4}`
       );
@@ -58,31 +60,39 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       console.error("Error fetching cards:", error);
     }
   };
-  useEffect(() => {
-    if (deck_id) {
-      if (renderOnceValue) {
-        fetchCards();
-      }
-      renderOnce.current = false;
-    }
-  }, [deck_id]);
+  // useEffect(() => {
+  //   if (deck_id) {
+  //     if (renderOnceValue) {
+  //       fetchCards();
+  //     }
+  //     renderOnce.current = false;
+  //   }
+  // }, [renderCards]);
 
   useEffect(() => {
-    const timer = async () => {
-      if (renderOnceValue1) {
-        if (checkTime) {
-          setCheckTime(false);
-          await time(4500);
-        }
-        setInterval(() => {
-          renderOnce.current = true;
-        }, 3000);
+    const waitForIt = async () => {
+      let run = 0;
+      console.log("RUN:", run);
+      await waitBeforeStartingGame();
+      if (shouldWait) {
+        await time(1000);
+        setChangeCards(c => c = 2);
+        await time(1000);
+        setChangeCards(c => c = 1)
+        await time(1000);
+        setChangeCards(c => c = 0)
+      } else {
+        console.log("skip");
       }
+      await fetchCards();
+      setChangeCards(c => c = 3);
+      await setRenderCards(!renderCards);
+      setShouldWait(true);
     };
-    timer();
+    waitForIt();
+    return () => {};
+  }, [renderCards]);
 
-    renderOnce1.current = false;
-  }, [renderOnceValue1]);
 
   const waitBeforeStartingGame = async () => {
     try {
@@ -102,6 +112,7 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       console.error(error);
     }
   };
+
 
   function chooseCard(card, i) {
     const blackColors = ["CLUBS", "SPADES"];
@@ -186,6 +197,7 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       ))}
       <span className="countdown-number">{score}</span>
       <span className="remaining-cards">Carte rimaste: {remainingCards}</span>
+      <span className="remaining-cards change-cards">Cambio tra: {changeCards}</span>
     </section>
   );
 }

@@ -248,7 +248,7 @@ section span {
 .remaining-cards {
   font-size: 2rem;
   position: absolute;
-  bottom: -20px;
+  bottom: -60px;
   animation: score-and-remaining 2s ease forwards;
 
 }
@@ -295,4 +295,7 @@ section span {
     opacity: 1;
     transform: translateX(0);
   }
+}
+.change-cards {
+  bottom: -20px;
 }
