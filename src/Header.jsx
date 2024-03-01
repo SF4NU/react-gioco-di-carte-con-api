@@ -5,7 +5,7 @@ function Header() {
     <>
       <header>
         <div className="header-div">
-          Cards Game by <a href="https://github.com/SF4NU" target="_blank">#SF4NU</a>
+          Gioco del 4 &nbsp; | &nbsp; <a href="https://github.com/SF4NU" target="_blank">#SF4NU</a>
         </div>
       </header>
     </>

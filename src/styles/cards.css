@@ -36,7 +36,22 @@
     transform: scale(0.4);
     bottom: -30px;
   }
-  
+}
+@media (orientation: landscape) and (min-height: 300px) and (max-height: 480px) {
+  .main-div {
+    transform: translateY(450px);
+    scale: 0.3;
+  }
+  .countdown-number {
+    transform: translateY(880px);
+    scale: 0.6;
+  }
+  section {
+    scale: 0.6;
+  }
+  .main-card-container {
+    margin-bottom: -250px;
+  }
 }
 
 /* @media (min-width: 1028px) and (max-width: 1920px) {

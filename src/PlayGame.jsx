@@ -76,16 +76,16 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       await waitBeforeStartingGame();
       if (shouldWait) {
         await time(1000);
-        setChangeCards(c => c = 2);
+        setChangeCards((c) => (c = 2));
         await time(1000);
-        setChangeCards(c => c = 1)
+        setChangeCards((c) => (c = 1));
         await time(1000);
-        setChangeCards(c => c = 0)
+        setChangeCards((c) => (c = 0));
       } else {
         console.log("skip");
       }
       await fetchCards();
-      setChangeCards(c => c = 3);
+      setChangeCards((c) => (c = 3));
       await setRenderCards(!renderCards);
       setShouldWait(true);
     };
@@ -93,12 +93,15 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
     return () => {};
   }, [renderCards]);
 
-
   const waitBeforeStartingGame = async () => {
     try {
       if (waitBeforeStarting) {
         setWaitBeforeStarting(false);
         console.log("started");
+        await time(1000);
+        setScore("5");
+        await time(1000);
+        setScore("4");
         await time(1000);
         setScore("3");
         await time(1000);
@@ -112,7 +115,6 @@ function PlayGame({ handCards, setCheckHowManyCards, setFinalScore }) {
       console.error(error);
     }
   };
-
 
   function chooseCard(card, i) {
     const blackColors = ["CLUBS", "SPADES"];
