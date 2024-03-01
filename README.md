@@ -1,7 +1,22 @@
-# [Demo-Alpha](https://sf4nu.github.io/react-gioco-di-carte-con-api/)
+# [Demo-BETA](https://sf4nu.github.io/react-gioco-di-carte-con-api/)
 
-# Gioco del 4: 
+# Gioco del 4
 
-Il gioco è ancora in fase di sviluppo ma per ora la regola è di prendere tutte le carte dal banco che sono simili a quelle in mano (per ora solo di numero), le carte al centro scorrono in fretta quindi la difficoltà sta nel raccogliere più carte possibili, prendere quella sbagliata toglierà punteggio.
+Questo repository contiene il codice sorgente per un'applicazione web del gioco del 4, implementata utilizzando React.js. Il gioco del 4 è un gioco di carte in cui l'obiettivo è cercare di schiacciare le carte sul tavolo uguali a quelle in mano
 
-Sto ancora mettendo a punto le regole di questo gioco di carte! La mia idea è di usare l'API disponibile su [deckofcardsapi.com](https://deckofcardsapi.com/) per gestire le carte. Con questa API, posso estrarre e gestire le carte da un mazzo con un ID unico. Questo significa che ogni volta che prendo una carta e la rimetto nel mazzo, sto sempre giocando con lo stesso mazzo.
+## Funzionalità Principali
+- **Fetch delle Carte**: Utilizza l'API di Deck of Cards per ottenere le carte necessarie per il gioco.
+- **Visualizzazione delle Carte**: Le carte sono visualizzate sullo schermo, con la possibilità di selezionare una carta facendo clic su di essa.
+- **Menu**: Un menu iniziale.
+- **Game Over**: Sezione Game Over che dà la possibilità di tornare al menu o di giocare un'altra partita.
+  
+
+## Dipendenze
+- React: Utilizzato per la creazione dell'interfaccia utente.
+- Axios: Libreria per effettuare richieste HTTP per ottenere le carte dall'API di Deck of Cards.
+- Lodash: Utilizzato per generare numeri casuali.
+
+## API Utilizzate
+Il gioco del 4 utilizza l'API di [Deck of Cards](https://deckofcardsapi.com/) per ottenere le carte necessarie per il gioco. L'API fornisce un set di endpoint che consentono di interagire con un mazzo di carte, incluso il mescolamento e la distribuzione delle carte.
+
+---
