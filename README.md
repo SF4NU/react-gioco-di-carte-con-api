@@ -1,4 +1,6 @@
-# [Demo-BETA](https://sf4nu.github.io/react-gioco-di-carte-con-api/)
+# [Demo](https://sf4nu.github.io/react-gioco-di-carte-con-api/)
+
+##Finito e funzionante 👍, quando avrò capito meglio node.js farò un'altra versione del gioco che includerà anche la classifica collegata a un database 
 
 # Gioco del 4
 
