@@ -2,8 +2,6 @@
 
 # Gioco del 4
 
----
-
 Questo repository contiene il codice sorgente per un'applicazione web del "Gioco del 4", l'ho chiamato così perché si basa sull'avere 4 carte in mano e 4 sul tavolo. Implementato utilizzando React.js.
 
 ---
@@ -22,5 +20,3 @@ Questo repository contiene il codice sorgente per un'applicazione web del "Gioco
 
 ## API Utilizzate
 Il gioco del 4 utilizza l'API di [Deck of Cards](https://deckofcardsapi.com/) per ottenere le carte necessarie per il gioco. L'API fornisce un set di endpoint che consentono di interagire con un mazzo di carte, incluso il mescolamento e la distribuzione delle carte.
-
----
